@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
-import { createStackNavigator, createDrawerNavigator, createMaterialTopTabNavigator, DrawerActions } from 'react-navigation';
-import {View,Text,StyleSheet,Platform,TouchableOpacity,Image,StatusBar} from 'react-native';
+import React, {Component} from 'react';
+import {
+  createStackNavigator,
+  createDrawerNavigator,
+  createMaterialTopTabNavigator,
+  DrawerActions
+} from 'react-navigation';
+import {TouchableOpacity, Image} from 'react-native';
+import styles from '../style/Style';
 
 import Profile from '../screen/Profile'
 import Home from '../screen/Home'
@@ -9,7 +15,7 @@ import DrawerScreen from './DrawerScreen'
 const Tabs = createMaterialTopTabNavigator({
   Home: Home,
   Profile: Profile
-},{
+}, {
   tabBarOptions: {
     activeTintColor: '#000',
     inactiveTintColor: 'gray',
@@ -23,36 +29,34 @@ const Tabs = createMaterialTopTabNavigator({
 });
 
 const DrawerNavigator = createDrawerNavigator({
-  Home:{
+  Home: {
     screen: Tabs
   }
-},{
+}, {
   initialRouteName: 'Home',
   contentComponent: DrawerScreen,
   drawerWidth: 300
 });
 
 const MenuImage = ({navigation}) => {
-  if(!navigation.state.isDrawerOpen){
-    return <Image source={require('../images/menu-button.png')}/>
-  }else{
-    return <Image source={require('../images/left-arrow.png')}/>
-  }
+  return <Image source={require('../images/menu-button.png')}/>
 };
 
 const StackNavigator = createStackNavigator({
 
   //important: key and screen name (i.e. DrawerNavigator) should be same while using the drawer navigator inside stack navigator.
 
-  DrawerNavigator:{
+  DrawerNavigator: {
     screen: DrawerNavigator
   }
-},{
-  navigationOptions: ({ navigation }) => ({
+}, {
+  navigationOptions: ({navigation}) => ({
     title: 'Navegação',  // Title to appear in status bar
     headerLeft:
-      <TouchableOpacity  onPress={() => {navigation.dispatch(DrawerActions.toggleDrawer())} }>
-        <MenuImage style="styles.bar" navigation={navigation}/>
+      <TouchableOpacity style={styles.iconBar} onPress={() => {
+        navigation.dispatch(DrawerActions.toggleDrawer())
+      }}>
+        <MenuImage navigation={navigation}/>
       </TouchableOpacity>,
     headerStyle: {
       backgroundColor: '#333',
@@ -64,5 +68,4 @@ const StackNavigator = createStackNavigator({
 
   })
 });
-
 export default StackNavigator;

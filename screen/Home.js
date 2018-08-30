@@ -8,7 +8,7 @@ export default class Profile extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View>
+      <View style={styles.container}>
         <Button
           title="Go to  profile"
           onPress={() =>

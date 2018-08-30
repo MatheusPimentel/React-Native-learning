@@ -8,13 +8,16 @@ export default styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   heading: {
-    fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
-  menuItem:{
-    padding: 10,
-    borderWidth: 0.5,
+  menuItem: {
+    padding: 15,
+    borderWidth: 1.0,
     borderColor: '#d6d7da'
+  },
+  iconBar: {
+    paddingLeft: 20,
+    paddingStart: 20
   }
 });
