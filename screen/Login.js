@@ -15,14 +15,26 @@ export default class Login extends React.Component {
     };
   }
 
-  async save (navigate) {
+  async save (navigate, user) {
     try {
       navigate('Main', { name: 'Main' })
-      await AsyncStorage.setItem('profile', JSON.stringify(this.state))
+      await AsyncStorage.setItem('profile', JSON.stringify(user))
       console.log('Deu certo!')
     } catch (e) {
       console.log('error saving data' + e)
     }
+  }
+
+  login (navigate) {
+    fetch(`http://localhost:3000/login/email/${this.state.email}/senha/${this.state.senha}`, {
+      method: 'GET'
+    }).then(response => response.json())
+      .then((responseJson) => {
+      console.log(responseJson)
+      this.save(navigate, responseJson )
+    }).catch((err) => {
+      console.log(err.response)
+    })
   }
 
   render() {
@@ -53,7 +65,7 @@ export default class Login extends React.Component {
         <Button
           title="Login"
           onPress={() =>
-            this.save(navigate)}/>
+            this.login(navigate)}/>
       </View>
     );
   }
