@@ -17,9 +17,11 @@ export default class Profile extends React.Component {
         if (err) {
           console.log('error in getValue' + err)
         }
-        console.log(result)
+        const item = JSON.parse(result)
+        console.log(item)
+        console.log(item.email)
+        console.log(item.senha)
       })
-      console.log('Deu certo!')
     } catch (e) {
       console.log('error saving data' + e)
     }
@@ -30,7 +32,7 @@ export default class Profile extends React.Component {
     return (
       <View style={styles.container}>
         <Button
-          title="Go to Home"
+          title="Recuperar usuário"
           onPress={() =>
             this.getValue()
           }/>
