@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Button, Image, TextInput} from 'react-native';
 import {AsyncStorage} from 'react-native';
+import axios from 'axios'
 
 export default class Login extends React.Component {
   static navigationOptions = {
@@ -26,14 +27,11 @@ export default class Login extends React.Component {
   }
 
   login (navigate) {
-    fetch(`http://localhost:3000/login/email/${this.state.email}/senha/${this.state.senha}`, {
-      method: 'GET'
-    }).then(response => response.json())
-      .then((responseJson) => {
-      console.log(responseJson)
-      this.save(navigate, responseJson )
-    }).catch((err) => {
-      console.log(err.response)
+    axios.get(`http://localhost:3000/login/email/${this.state.email}/senha/${this.state.senha}`)
+      .then(function (response) {
+        console.log('resposta: ', response.data)
+      }).catch(function (err) {
+        console.log('erro: ', err.response)
     })
   }
 
