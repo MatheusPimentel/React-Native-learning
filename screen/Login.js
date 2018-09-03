@@ -27,11 +27,12 @@ export default class Login extends React.Component {
   }
 
   login (navigate) {
-    axios.get(`http://localhost:3000/login/email/${this.state.email}/senha/${this.state.senha}`)
-      .then(function (response) {
+    console.log(`http://192.168.1.90:3000/login/email/${this.state.email}/senha/${this.state.senha}`)
+    axios.get(`http://192.168.1.90:3000/login/email/${this.state.email}/senha/${this.state.senha}`)
+      .then(response => {
         console.log('resposta: ', response.data)
-      }).catch(function (err) {
-        console.log('erro: ', err.response)
+      }).catch(err => {
+      console.log('erro: ', err.response)
     })
   }
 
