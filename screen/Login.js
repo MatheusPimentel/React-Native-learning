@@ -31,6 +31,7 @@ export default class Login extends React.Component {
     axios.get(`http://192.168.1.90:3000/login/email/${this.state.email}/senha/${this.state.senha}`)
       .then(response => {
         console.log('resposta: ', response.data)
+        this.save(navigate, response.data)
       }).catch(err => {
       console.log('erro: ', err.response)
     })
